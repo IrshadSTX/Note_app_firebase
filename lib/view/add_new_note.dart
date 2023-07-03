@@ -38,6 +38,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
+                  maxLength: 10,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Title',

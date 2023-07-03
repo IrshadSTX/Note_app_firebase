@@ -29,10 +29,13 @@ class HomeScreen extends StatelessWidget {
       body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection("Notes").snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("Notes")
+                .orderBy('creation_date', descending: true)
+                .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: LinearProgressIndicator());
+                return Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasData) {
                 return GridView.builder(
@@ -45,7 +48,8 @@ class HomeScreen extends StatelessWidget {
                         snapshot.data!.docs[index];
                     return Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: NoteCardWidget(noteSnap: noteSnap));
+                        child: NoteCardWidget(
+                            noteSnap: noteSnap, id: noteSnap.id));
                   },
                   itemCount: snapshot.data!.docs.length,
                 );

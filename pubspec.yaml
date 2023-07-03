@@ -33,6 +33,7 @@ dependencies:
   firebase_core:
   cloud_firestore:
   intl:
+  simple_speed_dial: ^0.1.7
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -7,18 +7,22 @@ class NoteCardWidget extends StatelessWidget {
   const NoteCardWidget({
     super.key,
     required this.noteSnap,
+    required this.id,
   });
-
+  final String id;
   final DocumentSnapshot<Object?> noteSnap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           (MaterialPageRoute(
-              builder: (context) => ReadNoteScreen(noteData: noteSnap))),
+              builder: (context) => ReadNoteScreen(
+                    noteData: noteSnap,
+                    id: id,
+                  ))),
         );
       },
       child: Container(
@@ -43,17 +47,20 @@ class NoteCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 noteSnap['creation_date'],
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                noteSnap['note_content'],
-                style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white,
-                    overflow: TextOverflow.ellipsis),
+              child: SizedBox(
+                height: 30,
+                child: Text(
+                  noteSnap['note_content'],
+                  style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                      overflow: TextOverflow.ellipsis),
+                ),
               ),
             )
           ],
