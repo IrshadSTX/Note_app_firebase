@@ -1,29 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:note_firebase/view/home_screen.dart';
+import 'package:note_firebase/controller/splash_provider.dart';
+import 'package:provider/provider.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    navigateToHome();
-  }
-
-  void navigateToHome() {
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Provider.of<SplashScreenProvider>(context, listen: false)
+        .navigateToHome(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
