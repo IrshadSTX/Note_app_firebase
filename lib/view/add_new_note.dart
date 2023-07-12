@@ -24,6 +24,20 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   Widget build(BuildContext context) {
     final dateController = DateFormat('yyyy-MM-dd').format(DateTime.now());
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              FirebaseFirestore.instance.collection('Notes').add({
+                "note_title": titleController.text,
+                "note_content": contentController.text,
+                "creation_date": dateController
+              }).then((value) {
+                Navigator.pop(context);
+              }).catchError((error) => log('failed$error'));
+            }
+          },
+          icon: const Icon(Icons.done),
+          label: const Text('Save')),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -51,9 +65,6 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
                 Text(dateController),
                 const SizedBox(
                   height: 20,
@@ -61,11 +72,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 TextFormField(
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'type your content',
-                  ),
                   controller: contentController,
+                  decoration: const InputDecoration.collapsed(
+                      hintText: 'type your text here'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'fill';
@@ -78,22 +87,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton.icon(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            FirebaseFirestore.instance.collection('Notes').add({
-                              "note_title": titleController.text,
-                              "note_content": contentController.text,
-                              "creation_date": dateController
-                            }).then((value) {
-                              Navigator.pop(context);
-                            }).catchError((error) => log('failed$error'));
-                          }
-                        },
-                        icon: const Icon(Icons.done),
-                        label: const Text('Save')),
-                  ],
+                  children: [],
                 ),
               ],
             ),
