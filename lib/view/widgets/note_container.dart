@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:note_firebase/view/edit_screen.dart';
 import 'package:note_firebase/view/read_note_screen.dart';
 
 class NoteCardWidget extends StatelessWidget {
@@ -37,7 +36,7 @@ class NoteCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 noteSnap['note_title'],
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
@@ -53,7 +52,7 @@ class NoteCardWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 30,
+                height: 60,
                 child: Text(
                   noteSnap['note_content'],
                   style: const TextStyle(

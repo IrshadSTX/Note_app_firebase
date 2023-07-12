@@ -16,15 +16,15 @@ class HomeScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddNoteScreen()),
+            MaterialPageRoute(builder: (context) => const AddNoteScreen()),
           );
         },
-        label: Text('Add Note'),
-        icon: Icon(Icons.add),
+        label: const Text('Add Note'),
+        icon: const Icon(Icons.add),
       ),
       appBar: AppBar(
         backgroundColor: Colors.black87,
-        title: Text('My notes'),
+        title: const Text('My notes'),
       ),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -35,13 +35,13 @@ class HomeScreen extends StatelessWidget {
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasData) {
                 return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1,
+                    childAspectRatio: 0.75,
                   ),
                   itemBuilder: (context, index) {
                     final DocumentSnapshot noteSnap =
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                 );
               }
-              return Text('There is no notes');
+              return const Text('There is no notes');
             },
           )),
     );

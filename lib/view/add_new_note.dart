@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddNoteScreen extends StatefulWidget {
-  AddNoteScreen({
+  const AddNoteScreen({
     super.key,
   });
 
@@ -27,7 +27,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Create your note'),
+        title: const Text('Create your note'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -51,13 +51,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
                   dateController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -75,7 +75,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -93,8 +93,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                             }).catchError((error) => log('failed$error'));
                           }
                         },
-                        icon: Icon(Icons.done),
-                        label: Text('Save')),
+                        icon: const Icon(Icons.done),
+                        label: const Text('Save')),
                   ],
                 ),
               ],

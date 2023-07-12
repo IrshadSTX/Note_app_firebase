@@ -44,7 +44,7 @@ class _AddNoteScreenState extends State<EditNoteScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text('Edit your note'),
+        title: const Text('Edit your note'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -89,7 +89,7 @@ class _AddNoteScreenState extends State<EditNoteScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -102,11 +102,11 @@ class _AddNoteScreenState extends State<EditNoteScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreen()));
+                                    builder: (context) => const HomeScreen()));
                           }
                         },
-                        icon: Icon(Icons.done),
-                        label: Text('update')),
+                        icon: const Icon(Icons.done),
+                        label: const Text('update')),
                   ],
                 ),
               ],

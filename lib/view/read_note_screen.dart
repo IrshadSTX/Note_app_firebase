@@ -12,14 +12,11 @@ class ReadNoteScreen extends StatelessWidget {
   final String id;
   // ignore: prefer_typing_uninitialized_variables
   final noteData;
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SpeedDial(
-        child: Icon(Icons.menu),
         speedDialChildren: <SpeedDialChild>[
           SpeedDialChild(
             child: const Icon(Icons.delete),
@@ -31,13 +28,13 @@ class ReadNoteScreen extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text(
+                    title: const Text(
                       'Delete note',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     content: SingleChildScrollView(
                       child: ListBody(
-                        children: <Widget>[
+                        children: const <Widget>[
                           Text(
                             'This note will be deleted',
                           ),
@@ -91,6 +88,7 @@ class ReadNoteScreen extends StatelessWidget {
         openForegroundColor: Colors.white,
         closedBackgroundColor: Colors.white,
         openBackgroundColor: Colors.black,
+        child: const Icon(Icons.menu),
       ),
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -116,17 +114,17 @@ class ReadNoteScreen extends StatelessWidget {
               children: [
                 Text(
                   'Date: ${noteData['creation_date']}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               noteData['note_content'],
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
