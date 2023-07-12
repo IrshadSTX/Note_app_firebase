@@ -38,23 +38,38 @@ class HomeScreen extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasData) {
-                return GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemBuilder: (context, index) {
-                    final DocumentSnapshot noteSnap =
-                        snapshot.data!.docs[index];
-                    return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: NoteCardWidget(
-                            noteSnap: noteSnap, id: noteSnap.id));
-                  },
-                  itemCount: snapshot.data!.docs.length,
-                );
+                if (snapshot.data!.docs.isNotEmpty) {
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemBuilder: (context, index) {
+                      final DocumentSnapshot noteSnap =
+                          snapshot.data!.docs[index];
+                      return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: NoteCardWidget(
+                              noteSnap: noteSnap, id: noteSnap.id));
+                    },
+                    itemCount: snapshot.data!.docs.length,
+                  );
+                } else {
+                  return const Center(
+                    child: Text(
+                      'There is no notes',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }
               }
-              return const Text('There is no notes');
+              return const Center(
+                child: Text(
+                  'There is no notes',
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
             },
           )),
     );

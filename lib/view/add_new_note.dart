@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteScreen extends StatefulWidget {
   const AddNoteScreen({
@@ -13,8 +14,6 @@ class AddNoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<AddNoteScreen> {
-  final dateController = DateTime.now().toString();
-
   final GlobalKey<FormState> formKey = GlobalKey();
 
   final TextEditingController titleController = TextEditingController();
@@ -23,6 +22,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dateController = DateFormat('yyyy-MM-dd').format(DateTime.now());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -54,9 +54,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  dateController,
-                ),
+                Text(dateController),
                 const SizedBox(
                   height: 20,
                 ),
